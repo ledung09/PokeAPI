@@ -1,5 +1,5 @@
 * {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -34,7 +34,7 @@ body {
 }
 
 .poke--name {
-  color: #3D405B;
+  color: #3d405b;
   font-weight: 600;
   margin: 8px 0px 0px;
   font-size: 1.15rem;
@@ -47,7 +47,7 @@ body {
   line-height: 1.25rem;
   padding: 0.6rem 1rem;
   background-color: #81b29a;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
   width: fit-content;
   cursor: pointer;
   margin-left: auto;
