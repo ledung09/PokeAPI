@@ -100,4 +100,6 @@ body {
 
 .poke--detail ul {
   margin-top: 8px;
+  font-size: 17px;
+  font-style: italic;
 }

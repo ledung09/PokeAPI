@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     const getPokemon = async () => {
       const res = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+        "https://pokeapi.co/api/v2/pokemon?limit=18&offset=0"
       );
       setNextUrl(res.data.next);
       res.data.results.forEach(async (pokemon: Pokemons) => {
