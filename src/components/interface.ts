@@ -5,3 +5,9 @@ export interface Pokemon {
     front_default: string;
   }
 }
+
+export interface Info {
+  name: string;
+  img_url: string;
+  ability: string[];
+}

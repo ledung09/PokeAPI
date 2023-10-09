@@ -2,7 +2,7 @@ interface Props {
   key: number;
   name: string;
   img_src: string;
-  onClick: any;
+  onClick: () => void;
 }
 
 export const PokemonItem = (props: Props) => {

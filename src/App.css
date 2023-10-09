@@ -59,3 +59,45 @@ body {
 .show--more:hover {
   background-color: #61997e;
 }
+
+
+.poke--info {
+  background-color: #f4f1de;
+  border-radius: 12px;
+  width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 84px;
+  padding: 0.5px 0px;
+  color: #3d405b;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.close--btn {
+  font-size: 20px;
+  font-weight: 700;  
+  text-align: end;
+  margin: 6px 12px;
+  cursor: pointer;
+}
+
+.poke--imag {
+  background-color: #f2cc8f;
+  background-image: linear-gradient(0deg,#f2cc8f,#f8f3d9);
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.poke--detail {
+  margin: 1rem;
+}
+
+.poke--detail p {
+  margin: 8px 0px;
+}
+
+.poke--detail ul {
+  margin-top: 8px;
+}

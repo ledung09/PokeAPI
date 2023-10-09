@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import { PokemonCollection } from "./components/PokemonCollection";
-import { Pokemon } from "./interface";
+import { Info, Pokemon } from "./components/interface";
+import { PokemonInfo } from "./components/PokemonInfo";
 
 interface Pokemons {
   name: string;
@@ -11,17 +12,21 @@ interface Pokemons {
 
 function App() {
   const [data, setData] = useState<Pokemon[]>([]);
-  const [nextUrl, setNextUrl] = useState<string>("")
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [showDetail, setShowDetail] = useState<boolean>(false)
-  const [ability, setAbility] = useState<string[]>([])
+  const [nextUrl, setNextUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [info, setInfo] = useState<Info>({
+    name: "",
+    img_url: "",
+    ability: [],
+  });
 
   useEffect(() => {
     const getPokemon = async () => {
       const res = await axios.get(
         "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
       );
-      setNextUrl(res.data.next)
+      setNextUrl(res.data.next);
       res.data.results.forEach(async (pokemon: Pokemons) => {
         const pokeRes = await axios.get(
           `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
@@ -36,6 +41,7 @@ function App() {
   const showMore = async () => {
     setIsLoading(true);
     const res = await axios.get(nextUrl);
+    setNextUrl(res.data.next);
     res.data.results.forEach(async (pokemon: Pokemons) => {
       const pokeRes = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
@@ -43,31 +49,32 @@ function App() {
       setData((p) => [...p, pokeRes.data]);
       setIsLoading(false);
     });
-  }
-
+  };
 
   return (
     <div className="App">
       <p className="poke--header">Pokemon</p>
-      {
-        showDetail ?  
+      {showDetail ? (
         <>
-          <p> {ability[0]} </p>
-          <p> {ability[1]} </p>
+          <PokemonInfo 
+            name={info.name}
+            img_url={info.img_url}
+            ability={info.ability}
+            setShowDetail={setShowDetail}
+          />
         </>
-          : 
-          <>
-            <PokemonCollection 
-              pokemons={data}
-              setShowDetail = {setShowDetail}
-              setAbility = {setAbility}
-            />
-            <div onClick={showMore} className="show--more"> 
-              {isLoading ? "Loading..." : "Show more"}
-            </div>
-          </>
-      }
-      
+      ) : (
+        <>
+          <PokemonCollection
+            pokemons={data}
+            setShowDetail={setShowDetail}
+            setInfo={setInfo}
+          />
+          <div onClick={showMore} className="show--more">
+            {isLoading ? "Loading..." : "Show more"}
+          </div>
+        </>
+      )}
     </div>
   );
 }
